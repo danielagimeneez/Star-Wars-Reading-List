@@ -4,7 +4,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			people: [],
 			planets: [],
-			vehicles: []
+			vehicles: [],
+			singlePeople: [],
+			favorites: []
 		},
 		actions: {
 			getPeople: async () => {
@@ -53,6 +55,23 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 					setStore({
 						vehicles: body.results
+					});
+				} catch(error) {
+					alert("¡Ay! Se cayó el servidor");
+				}
+			},
+			getSinglePeople: async () => {
+				try {
+					const response = await fetch(
+						`${API_URL}/people/${uid}`
+					);
+					const body = await response.json();
+					if (response.status !== 200){
+						alert("Woops no pudimos cargar al personaje");
+						return;
+					}
+					setStore({
+						singlePeople: body.results
 					});
 				} catch(error) {
 					alert("¡Ay! Se cayó el servidor");

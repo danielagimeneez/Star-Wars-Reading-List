@@ -8,7 +8,7 @@ export const Card = ({item, resource}) => {
                 <img src={`https://starwars-visualguide.com/assets/img/${resource == "people" ? "characters" : resource }/${item.uid}.jpg`} className="card-img-top" alt="..."/>
                 <div className="card-body">
                   <h5 className="card-title">{item.name}</h5>
-                  <p className="card-text">{item.status}</p>
+                  <p className="card-text">{item.eye_color}</p>
                   <a href="#" className="btn btn-primary">Learn more!</a>
                 </div>
             </div>
