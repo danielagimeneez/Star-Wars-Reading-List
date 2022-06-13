@@ -1,43 +1,63 @@
+const API_URL = "https://www.swapi.tech/api";
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			people: [],
+			planets: [],
+			vehicles: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			getPeople: async () => {
+				try {
+					const response = await fetch(
+						`${API_URL}/people`
+					);
+					const body = await response.json();
+					if (response.status !== 200) {
+						alert("Woops no pudimos cargar los personajes");
+						return;
+					}
+					setStore({
+						people: body.results
+					});
+				} catch(error) {
+					alert("¡Ay! Se cayó el servidor");
+				}
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			getPlanets: async () => {
+				try {
+					const response = await fetch(
+						`${API_URL}/planets`
+					);
+					const body = await response.json();
+					if (response.status !== 200) {
+						alert("Woops no pudimos cargar los planetas");
+						return;
+					}
+					setStore({
+						planets: body.results
+					});
+				} catch(error) {
+					alert("¡Ay! Se cayó el servidor");
+				}
 			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
+			getVehicles: async () => {
+				try {
+					const response = await fetch(
+						`${API_URL}/vehicles`
+					);
+					const body = await response.json();
+					if (response.status !== 200) {
+						alert("Woops no pudimos cargar los vehículos");
+						return;
+					}
+					setStore({
+						vehicles: body.results
+					});
+				} catch(error) {
+					alert("¡Ay! Se cayó el servidor");
+				}
+			}	
 		}
 	};
 };

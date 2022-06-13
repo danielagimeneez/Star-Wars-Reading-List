@@ -5,13 +5,19 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
 			<Link to="/">
-				<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+			<img src="https://th.bing.com/th/id/OIP.gxi_tc2r_yqOVNGVQwfSiwHaEK?pid=ImgDet&rs=1" 
+			className="w-50"
+    		style={{
+            maxWidth: "250px",
+          	}}/>
 			</Link>
 			<div className="ml-auto">
 				<Link to="/demo">
-					<button className="btn btn-primary">Check the Context in action</button>
+					<button className="btn btn-primary">Favorites</button>
 				</Link>
 			</div>
 		</nav>
 	);
 };
+
+// <img src="https://th.bing.com/th/id/OIP.gxi_tc2r_yqOVNGVQwfSiwHaEK?pid=ImgDet&rs=1"/> Logo de Star Wars
